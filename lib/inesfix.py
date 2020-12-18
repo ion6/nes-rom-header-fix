@@ -19,12 +19,19 @@ cart_xml = "NesCarts (2017-08-21).xml"
 # uncomment next line to use Nestopia's DB instead
 # cart_xml = "NstDatabase.xml"
 
-def fix_headers(path):
+def fix_headers(path, ext, isRecursive):
     success = True
-    files   = os.listdir(str(path))
-    files   = [str(path / i) for i in files if os.path.isfile(str(path / i))]
-    for i in files:
-        if not fix_header(i):
+    nesList = []
+
+    if isRecursive:
+    	for root, dirs, files in os.walk(str(path)):
+    		nesList = [str(path / file) for file in files if file.endswith("." + ext)]
+    else:
+        files   = os.listdir(str(path))
+        nesList = [str(path / file) for file in files if os.path.isfile(str(path / file)) and file.endswith("." + ext)]
+
+    for rom in nesList:
+        if not fix_header(rom):
             success = False
     return False
 
