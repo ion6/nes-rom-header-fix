@@ -3,16 +3,6 @@ ROM Manager
 
 This project includes various small utilities for managing ROMs.
 
-count.py
---------
-
-Usage:
-`count.py --path /path/to/count`
-
-This counts all files in the `path` directory, assuming they are roms, and displays the number of games you have in that directory.
-
-¯\\\_(ツ)\_/¯
-
 sort.py
 -------
 Usage:
@@ -31,7 +21,9 @@ fix-headers.py
 
 Usage:
 
-`fix-headers.py --path /path/to/nes/roms`
+`fix-headers.py --path /path/to/nes/roms --ext nes --recursive`
+
+If you omit a file extension, it assumes 'nes'.  The search is non-recursive by default.
 
 This utility analyzes NES headers and fixes them if they are missing or corrupt. `path` can point to a single file or a directory, in which case `fix-headers` will analyze each file in that directory.
 
@@ -44,7 +36,3 @@ The utility should now be python 2/3 compatible, and can be called on a single r
 Which in turn relies up BootGod's ROM XML document:
 [http://bootgod.dyndns.org:7777/xml.php](http://bootgod.dyndns.org:7777/xml.php)
 
-Shortcomings
-------------
-
-All of these utilities assume a clean `path` to work from, without subfolders. This could be improved by adding a `--recursive` flag and by handling file types/extensions to avoid processing non-ROM files.
